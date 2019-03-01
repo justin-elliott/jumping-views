@@ -34,7 +34,7 @@ function onWindowFocus(win: BrowserWindow) {
     viewWin.setBrowserView(null as any); // null works, with encouragement
   }
   win.setBrowserView(view);
-  const { width, height } = win.getBounds();
+  const { width, height } = win.getContentBounds();
   view.setBounds({ x: 0, y: 0, width, height });
 }
 
