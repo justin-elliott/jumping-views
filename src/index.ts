@@ -1,7 +1,6 @@
 import { app, BrowserWindow, BrowserView } from 'electron';
 import * as path from 'path';
 
-let windows: BrowserWindow[];
 let view: BrowserView;
 
 function createWindow(i: number): BrowserWindow {
@@ -15,17 +14,9 @@ function createWindow(i: number): BrowserWindow {
     search: `n=${i + 1}`
   });
 
-  win.on('closed', () => onWindowClosed(win));
   win.on('focus', () => onWindowFocus(win));
 
   return win;
-}
-
-function onWindowClosed(win: BrowserWindow) {
-  const index = windows.indexOf(win);
-  if (index >= 0) {
-    windows.splice(index, 1);
-  }
 }
 
 function onWindowFocus(win: BrowserWindow) {
@@ -41,7 +32,9 @@ function onWindowFocus(win: BrowserWindow) {
 async function createWindows(n: number) {
   await app.whenReady();
 
-  windows = [...new Array(n)].map((_, i) => createWindow(i));
+  for (let i = 0; i < n; i++) {
+    createWindow(i);
+  }
 
   view = new BrowserView();
   view.webContents.loadURL('https://google.com/');
