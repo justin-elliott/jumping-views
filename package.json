@@ -1,0 +1,16 @@
+{
+  "name": "jumping-views",
+  "version": "1.0.0",
+  "description": "Test harness for moving webviews/BrowserViews across BrowserWindows.",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "start": "tsc && cp src/*.html dist && electron ./dist"
+  },
+  "devDependencies": {
+    "electron": "^4.0.6",
+    "typescript": "^3.3.3333"
+  }
+}
